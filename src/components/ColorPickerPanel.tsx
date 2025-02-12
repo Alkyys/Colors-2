@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { Slider } from "./ui/slider";
 import GradientPreview from "./GradientPreview";
+import WearablePreview from "./WearablePreview";
 import { RefreshCcw, Plus, Minus } from "lucide-react";
 
 interface ColorPickerPanelProps {
@@ -69,7 +70,7 @@ const ColorPickerPanel = ({
       : `radial-gradient(circle, ${colors.join(", ")})`;
 
   return (
-    <Card className="w-full max-w-[480px] bg-white">
+    <Card className="w-full max-w-[480px]">
       <CardContent className="p-6 space-y-6">
         <GradientPreview
           colors={colors}
@@ -79,6 +80,13 @@ const ColorPickerPanel = ({
         />
 
         <Tabs defaultValue="colors" className="w-full">
+          <div className="mb-6">
+            <WearablePreview
+              colors={colors}
+              isGradient={gradientType === "linear"}
+              gradientDirection={`${angle}deg`}
+            />
+          </div>
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="colors">Colors</TabsTrigger>
             <TabsTrigger value="settings">Settings</TabsTrigger>

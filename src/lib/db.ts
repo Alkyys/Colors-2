@@ -43,21 +43,19 @@ export async function createPalette({
 export async function getPalette(id: string) {
   const { data: palette, error: paletteError } = await supabase
     .from("palettes")
-    .select("*")
+    .select(
+      `
+      *,
+      palette_colors (*),
+      likes_count:likes(count)
+    `,
+    )
     .eq("id", id)
     .single();
 
   if (paletteError) throw paletteError;
 
-  const { data: colors, error: colorsError } = await supabase
-    .from("palette_colors")
-    .select("*")
-    .eq("palette_id", id)
-    .order("position");
-
-  if (colorsError) throw colorsError;
-
-  return { ...palette, colors };
+  return palette;
 }
 
 export async function getTrendingPalettes() {
@@ -67,10 +65,10 @@ export async function getTrendingPalettes() {
       `
       *,
       palette_colors (*),
-      likes (count)
+      likes_count:likes(count)
     `,
     )
-    .order("created_at", { ascending: false })
+    .order("likes_count(count)", { ascending: false, nullsFirst: false })
     .limit(20);
 
   if (palettesError) throw palettesError;
@@ -110,7 +108,8 @@ export async function getLikedPalettes() {
       palette_id,
       palettes (
         *,
-        palette_colors (*)
+        palette_colors (*),
+        likes_count:likes(count)
       )
     `);
 

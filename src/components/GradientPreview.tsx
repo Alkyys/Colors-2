@@ -33,7 +33,7 @@ const GradientPreview = ({
   };
 
   return (
-    <div className="w-full max-w-[440px] bg-white p-4 rounded-lg shadow-md">
+    <div className="w-full max-w-[440px] bg-card p-4 rounded-lg shadow-md">
       <div className="relative">
         <div className="h-[200px] w-full rounded-lg" style={gradientStyle} />
         <TooltipProvider>

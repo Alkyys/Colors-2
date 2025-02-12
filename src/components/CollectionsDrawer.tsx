@@ -104,7 +104,7 @@ const CollectionsDrawer = ({
   }, []);
   return (
     <Sheet open={isOpen}>
-      <SheetContent side="right" className="w-[400px] bg-white p-0">
+      <SheetContent side="right" className="w-[400px] p-0">
         <SheetHeader className="p-6 border-b">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">

@@ -4,6 +4,7 @@ import TrendingGrid from "./TrendingGrid";
 import CollectionsDrawer from "./CollectionsDrawer";
 import { Button } from "./ui/button";
 import { Folder, LogIn } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 import AuthDialog from "./auth/AuthDialog";
 import { useAuth } from "@/lib/auth";
 
@@ -19,9 +20,9 @@ const Home = ({ initialCollectionsOpen = false }: HomeProps) => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white border-b">
+      <header className="bg-card border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex justify-between items-center">
             <h1 className="text-2xl font-bold text-gray-900">Color Palette</h1>
@@ -34,20 +35,23 @@ const Home = ({ initialCollectionsOpen = false }: HomeProps) => {
                 <Folder className="h-5 w-5" />
                 Collections
               </Button>
-              {user ? (
-                <Button variant="ghost" onClick={signOut}>
-                  Sign Out
-                </Button>
-              ) : (
-                <Button
-                  variant="default"
-                  onClick={() => setIsAuthOpen(true)}
-                  className="flex items-center gap-2"
-                >
-                  <LogIn className="h-5 w-5" />
-                  Sign In
-                </Button>
-              )}
+              <div className="flex items-center gap-2">
+                <ThemeToggle />
+                {user ? (
+                  <Button variant="ghost" onClick={signOut}>
+                    Sign Out
+                  </Button>
+                ) : (
+                  <Button
+                    variant="default"
+                    onClick={() => setIsAuthOpen(true)}
+                    className="flex items-center gap-2"
+                  >
+                    <LogIn className="h-5 w-5" />
+                    Sign In
+                  </Button>
+                )}
+              </div>
             </div>
           </div>
         </div>

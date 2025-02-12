@@ -49,7 +49,7 @@ const PaletteCard = ({
     : {};
 
   return (
-    <Card className="w-[300px] bg-white overflow-hidden">
+    <Card className="w-[300px] overflow-hidden">
       <CardContent className="p-0">
         {/* Preview Area */}
         <div className="h-40 w-full" style={backgroundStyle}>
